@@ -8,7 +8,8 @@ const connectGraphQL = async (app: Express) => {
 
   const server = new ApolloServer({
     schema,
-    formatError: formatArgumentValidationError
+    formatError: formatArgumentValidationError,
+    context: ({ req }: any) => ({ req })
   });
 
   server.applyMiddleware({ app });
