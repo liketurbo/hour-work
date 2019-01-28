@@ -7,7 +7,7 @@ import sendEmail from '../../utils/sendEmail';
 
 @Resolver(of => User)
 class UserRegisterResolver {
-  @Mutation(() => User)
+  @Mutation(returns => User)
   async register(@Arg('input')
   {
     firstName,

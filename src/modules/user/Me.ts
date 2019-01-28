@@ -4,7 +4,7 @@ import Context from '../../types/context';
 
 @Resolver(of => User)
 class UserMeResolver {
-  @Query(() => User, { nullable: true })
+  @Query(returns => User, { nullable: true })
   async me(@Ctx() { req }: Context): Promise<User | null> {
     if (!req.session.userId) {
       return null;

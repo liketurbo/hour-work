@@ -11,7 +11,7 @@ import Context from '../../types/context';
 
 @Resolver(of => User)
 class UserLoginResolver {
-  @Mutation(() => User, { nullable: true })
+  @Mutation(returns => User, { nullable: true })
   async login(
     @Arg('input')
     { email, password }: UserLoginInput,
