@@ -1,3 +1,5 @@
+# idle config
+.vscode/
 # dependencies
 node_modules/
 # lock files

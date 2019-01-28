@@ -12,6 +12,8 @@
     "noImplicitThis": true,
     "noImplicitReturns": true,
     "noImplicitUseStrict": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   }
 }
