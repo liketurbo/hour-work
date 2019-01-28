@@ -23,6 +23,10 @@ class UserLoginResolver {
       return null;
     }
 
+    if (!user.confirmed) {
+      return null;
+    }
+
     const valid = await compare(password, user.password);
 
     if (!valid) {

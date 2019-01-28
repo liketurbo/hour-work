@@ -3,7 +3,7 @@ import { Express } from 'express';
 import { formatArgumentValidationError } from 'type-graphql';
 import createSchema from '../graphql/createSchema';
 
-const connectGraphQL = async (app: Express) => {
+const createGraphQL = async (app: Express) => {
   const schema = await createSchema();
 
   const server = new ApolloServer({
@@ -17,4 +17,4 @@ const connectGraphQL = async (app: Express) => {
   return server;
 };
 
-export default connectGraphQL;
+export default createGraphQL;

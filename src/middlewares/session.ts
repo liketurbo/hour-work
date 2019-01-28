@@ -1,11 +1,11 @@
 import connectRedis from 'connect-redis';
 import cors from 'cors';
 import { Express } from 'express';
-import session from 'express-session';
-import Redis from 'ioredis';
+import expressSession from 'express-session';
 import ms from 'ms';
+import redis from './redis';
 
-const connectSession = async (app: Express) => {
+const session = async (app: Express) => {
   app.use(
     cors({
       credentials: true,
@@ -17,13 +17,10 @@ const connectSession = async (app: Express) => {
   );
 
   app.use(
-    session({
+    expressSession({
       name: 'sid',
-      store: new (connectRedis(session))({
-        client:
-          process.env.NODE_ENV === 'production'
-            ? (new Redis(process.env.REDIS_URL) as any)
-            : (new Redis() as any)
+      store: new (connectRedis(expressSession))({
+        client: redis as any
       }),
       resave: false, // Forces the session to be saved back to the session store, even if the session was never modified during the request.
       saveUninitialized: false, // Forces a session that is "uninitialized" to be saved to the store
@@ -37,4 +34,4 @@ const connectSession = async (app: Express) => {
   );
 };
 
-export default connectSession;
+export default session;
