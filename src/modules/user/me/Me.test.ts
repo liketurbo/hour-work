@@ -12,11 +12,9 @@ afterAll(async () => {
   await connection.close();
 });
 
-const registerMutation = `
-  mutation RegisterMutation($input: UserRegisterInput!) {
-  register(
-    input: $input
-  ) {
+const meQuery = `
+  query {
+  me {
     id
     firstName
     email
@@ -24,38 +22,44 @@ const registerMutation = `
 }
 `;
 
-describe('Register', () => {
-  it('create user', async () => {
-    const user = {
+describe('Me', () => {
+  it('get user', async () => {
+    const user = await User.create({
       firstName: faker.name.firstName(),
       email: faker.internet.email(),
       password: faker.internet.password()
-    };
+    }).save();
+
+    const context = { req: { session: { userId: user.id } } };
 
     const response = await graphQLCall({
-      query: registerMutation,
-      queryVariables: {
-        input: user
-      }
+      query: meQuery,
+      context
     });
 
     expect(response).toMatchObject({
       data: {
-        register: {
-          id: expect.any(String),
-          email: user.email,
-          firstName: user.firstName
+        me: {
+          id: `${user.id}`,
+          firstName: user.firstName,
+          email: user.email
         }
       }
     });
+  });
 
-    const dbUser = await User.findOne(response.data.register.id);
-    expect(dbUser).toMatchObject({
-      id: expect.any(Number),
-      firstName: user.firstName,
-      email: user.email,
-      password: expect.any(String),
-      confirmed: false
+  it('returns null', async () => {
+    const context = { req: { session: {} } };
+
+    const response = await graphQLCall({
+      query: meQuery,
+      context
+    });
+
+    expect(response).toMatchObject({
+      data: {
+        me: null
+      }
     });
   });
 });

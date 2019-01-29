@@ -2,22 +2,30 @@ import { graphql, GraphQLSchema } from 'graphql';
 import createSchema from '../../graphql/createSchema';
 
 interface graphQLCallArgs {
-  source: string;
-  variableValues?: {
+  query: string;
+  queryVariables?: {
+    [key: string]: any;
+  };
+  context?: {
     [key: string]: any;
   };
 }
 
 let schema: GraphQLSchema;
-const graphQLCall = async ({ source, variableValues }: graphQLCallArgs) => {
+const graphQLCall = async ({
+  query,
+  queryVariables,
+  context
+}: graphQLCallArgs) => {
   if (!schema) {
     schema = await createSchema();
   }
 
   return graphql({
     schema,
-    source,
-    variableValues
+    source: query,
+    variableValues: queryVariables,
+    contextValue: context
   });
 };
 
