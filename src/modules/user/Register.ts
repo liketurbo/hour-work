@@ -2,7 +2,7 @@ import { hash } from 'bcryptjs';
 import { Arg, Mutation, Resolver } from 'type-graphql';
 import UserRegisterInput from './register/RegisterInput';
 import User from '../../entities/User';
-import createConfirmationUrl from '../../utils/createConfirmationUrl';
+import createEmailUrl from '../../utils/createEmailUrl';
 import sendEmail from '../../utils/sendEmail';
 
 @Resolver(of => User)
@@ -22,8 +22,8 @@ class UserRegisterResolver {
       password: hashedPassword
     }).save();
 
-    const confirmationLink = await createConfirmationUrl(user.id);
-    await sendEmail(email, confirmationLink);
+    const confirmEmailLink = await createEmailUrl(user.id, 'confirmEmail');
+    await sendEmail(email, confirmEmailLink);
 
     return user;
   }
