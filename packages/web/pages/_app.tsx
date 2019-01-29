@@ -29,9 +29,6 @@ class MyApp extends App<{ apolloClient: ApolloClient<any> }> {
     const { Component, pageProps, apolloClient } = this.props;
     return (
       <Container>
-        <Head>
-          <title>My page</title>
-        </Head>
         {/* Wrap every page in Styles and Theme providers */}
         <StylesProvider
           generateClassName={this.pageContext.generateClassName as any}
