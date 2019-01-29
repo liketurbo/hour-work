@@ -1,12 +1,7 @@
-import { IsEmail } from 'class-validator';
-import { Field, InputType } from 'type-graphql';
-import User from '../../../entities/User';
+import { InputType } from 'type-graphql';
+import { UserInputEmailMixin } from '../common/CommonInput';
 
 @InputType()
-class UserForgotPasswordInput implements Partial<User> {
-  @Field()
-  @IsEmail()
-  email: string;
-}
+class UserForgotPasswordInput extends UserInputEmailMixin(class {}) {}
 
 export default UserForgotPasswordInput;

@@ -1,15 +1,9 @@
-import { IsEmail, Length } from 'class-validator';
-import { Field, InputType } from 'type-graphql';
+import { InputType } from 'type-graphql';
+import { UserInputEmailMixin, UserInputPasswordMixin } from '../common/CommonInput';
 
 @InputType()
-class UserLoginInput {
-  @Field()
-  @IsEmail()
-  email: string;
-
-  @Field()
-  @Length(5)
-  password: string;
-}
+class UserLoginInput extends UserInputEmailMixin(
+  UserInputPasswordMixin(class {})
+) {}
 
 export default UserLoginInput;

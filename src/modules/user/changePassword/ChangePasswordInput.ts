@@ -1,15 +1,10 @@
-import { Length } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
-import User from '../../../entities/User';
+import { UserInputPasswordMixin } from '../common/CommonInput';
 
 @InputType()
-class UserChangePasswordInput implements Partial<User> {
+class UserChangePasswordInput extends UserInputPasswordMixin(class {}) {
   @Field()
   token: string;
-
-  @Field()
-  @Length(5)
-  password: string;
 }
 
 export default UserChangePasswordInput;

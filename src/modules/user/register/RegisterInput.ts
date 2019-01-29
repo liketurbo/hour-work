@@ -1,10 +1,10 @@
 import { IsEmail, Length } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
 import IsEmailAlreadyExists from './registerInput/IsEmailAlreadyExists';
-import User from '../../../entities/User';
+import { UserInputPasswordMixin } from '../common/CommonInput';
 
 @InputType()
-class UserRegisterInput implements Partial<User> {
+class UserRegisterInput extends UserInputPasswordMixin(class {}) {
   @Field()
   @Length(1, 255)
   firstName: string;
@@ -13,10 +13,6 @@ class UserRegisterInput implements Partial<User> {
   @IsEmail()
   @IsEmailAlreadyExists({ message: 'email already in use' })
   email: string;
-
-  @Field()
-  @Length(5)
-  password: string;
 }
 
 export default UserRegisterInput;
