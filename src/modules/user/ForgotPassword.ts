@@ -1,8 +1,9 @@
 import { Arg, Mutation, Resolver } from 'type-graphql';
 import UserForgotPasswordInput from './forgotPassword/ForgotPasswordInput';
 import User from '../../entities/User';
-import createEmailUrl from '../../utils/createEmailUrl';
-import sendEmail from '../../utils/sendEmail';
+import createEmailUrl from '../../utils/CreateEmailUrl';
+import { FORGOT_PASSWORD } from '../../utils/createEmailUrl/Prefixes';
+import sendEmail from '../../utils/SendEmail';
 
 @Resolver(of => User)
 class UserForgotPasswordResolver {
@@ -17,7 +18,7 @@ class UserForgotPasswordResolver {
       return false;
     }
 
-    const forgotPasswordLink = await createEmailUrl(user.id, 'forgotPassword');
+    const forgotPasswordLink = await createEmailUrl(user.id, FORGOT_PASSWORD);
     await sendEmail(email, forgotPasswordLink);
 
     return true;

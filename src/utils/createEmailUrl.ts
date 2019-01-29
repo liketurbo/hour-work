@@ -1,24 +1,25 @@
 import ms from 'ms';
 import uuid from 'uuid';
+import { CONFIRM_EMAIL, FORGOT_PASSWORD } from './createEmailUrl/Prefixes';
 import redis from '../middlewares/redis';
 
 const createEmailUrl = async (
   userId: number,
-  type: 'confirmEmail' | 'forgotPassword'
+  type: CONFIRM_EMAIL | FORGOT_PASSWORD
 ) => {
   const token = uuid.v4();
-  await redis.set(token, userId, 'ex', ms('1d'));
+  await redis.set(type + token, userId, 'ex', ms('1d'));
 
   let url = '';
   switch (type) {
-    case 'confirmEmail':
+    case CONFIRM_EMAIL:
       url = `${
         process.env.NODE_ENV === 'production'
           ? process.env.WEB_URL
           : 'http://localhost:3000'
       }/user/confirm-email/${token}`;
       break;
-    case 'forgotPassword':
+    case FORGOT_PASSWORD:
       url = `${
         process.env.NODE_ENV === 'production'
           ? process.env.WEB_URL
