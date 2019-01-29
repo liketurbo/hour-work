@@ -1,5 +1,5 @@
-import express from 'express';
 import 'reflect-metadata';
+import express from 'express';
 import connectDB from './middlewares/connectDB';
 import createGraphQL from './middlewares/createGraphQL';
 import session from './middlewares/session';
