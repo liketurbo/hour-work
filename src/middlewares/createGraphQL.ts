@@ -9,7 +9,7 @@ const createGraphQL = async (app: Express) => {
   const server = new ApolloServer({
     schema,
     formatError: formatArgumentValidationError,
-    context: ({ req }: any) => ({ req })
+    context: ({ req, res }: any) => ({ req, res })
   });
 
   server.applyMiddleware({ app });
