@@ -12,7 +12,7 @@ const createGraphQL = async (app: Express) => {
     context: ({ req, res }: any) => ({ req, res })
   });
 
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ app, cors: false }); // set off cors overwriting
 
   return server;
 };
