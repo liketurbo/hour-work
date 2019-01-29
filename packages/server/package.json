@@ -1,5 +1,5 @@
 {
-  "name": "@husband-hour/server",
+  "name": "@hour-work/server",
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
