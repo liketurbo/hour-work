@@ -12,6 +12,7 @@ import {
   UserMeDocument,
   UserMeQuery
 } from './ApolloComponents';
+import Loading from './Loading';
 
 const useStyles = makeStyles((theme: any) => ({
   '@global': {
@@ -47,10 +48,6 @@ const Header = () => {
     return <div>{JSON.stringify(error)}</div>;
   }
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <AppBar position="static" color="default" className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
@@ -61,39 +58,45 @@ const Header = () => {
           </Button>
         </div>
 
-        <div className={classes.rightSegment}>
-          {data.me ? (
-            <Fragment>
-              <Typography>{data.me.firstName}</Typography>
-              <Button
-                variant="outlined"
-                onClick={async () =>
-                  await logout({ refetchQueries: [{ query: UserMeDocument }] })
-                }
-                className={classes.userButton}
-              >
-                Logout
-              </Button>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <Button
-                variant="outlined"
-                onClick={() => Router.push('/sign-in')}
-                className={classes.userButton}
-              >
-                Sign in
-              </Button>
-              <Button
-                variant="outlined"
-                onClick={() => Router.push('/sign-up')}
-                className={classes.userButton}
-              >
-                Sign up
-              </Button>
-            </Fragment>
-          )}
-        </div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className={classes.rightSegment}>
+            {data.me ? (
+              <Fragment>
+                <Typography>{data.me.firstName}</Typography>
+                <Button
+                  variant="outlined"
+                  onClick={async () =>
+                    await logout({
+                      refetchQueries: [{ query: UserMeDocument }]
+                    })
+                  }
+                  className={classes.userButton}
+                >
+                  Logout
+                </Button>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <Button
+                  variant="outlined"
+                  onClick={() => Router.push('/sign-in')}
+                  className={classes.userButton}
+                >
+                  Sign in
+                </Button>
+                <Button
+                  variant="outlined"
+                  onClick={() => Router.push('/sign-up')}
+                  className={classes.userButton}
+                >
+                  Sign up
+                </Button>
+              </Fragment>
+            )}
+          </div>
+        )}
       </Toolbar>
     </AppBar>
   );

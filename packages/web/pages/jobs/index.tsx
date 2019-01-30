@@ -15,6 +15,7 @@ import {
   JobFetchAllQuery
 } from '../../components/ApolloComponents';
 import Layout from '../../components/Layout';
+import Loading from '../../components/Loading';
 
 const useStyles = makeStyles((theme: any) => ({
   layout: {
@@ -55,34 +56,34 @@ const JobsIndex = () => {
     return <div>{JSON.stringify(error)}</div>;
   }
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <Layout title="Jobs" className={classes.layout}>
       <Grid container spacing={40} alignItems="flex-end">
-        {data.jobFetchAll.map(job => (
-          <Grid item key={job.id} xs={12} sm={6} md={4}>
-            <Card>
-              <CardHeader
-                title={job.title}
-                titleTypographyProps={{ align: 'center' }}
-                className={classes.cardHeader}
-              />
-              <CardContent>
-                <Typography variant="subtitle1" align="center">
-                  {job.description}
-                </Typography>
-              </CardContent>
-              <CardActions className={classes.cardActions}>
-                <Button fullWidth variant="outlined" color="primary">
-                  Send offer
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
+        {loading ? (
+          <Loading />
+        ) : (
+          data.jobFetchAll.map(job => (
+            <Grid item key={job.id} xs={12} sm={6} md={4}>
+              <Card>
+                <CardHeader
+                  title={job.title}
+                  titleTypographyProps={{ align: 'center' }}
+                  className={classes.cardHeader}
+                />
+                <CardContent>
+                  <Typography variant="subtitle1" align="center">
+                    {job.description}
+                  </Typography>
+                </CardContent>
+                <CardActions className={classes.cardActions}>
+                  <Button fullWidth variant="outlined" color="primary">
+                    Send offer
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))
+        )}
       </Grid>
     </Layout>
   );

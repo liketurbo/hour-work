@@ -11,16 +11,16 @@ import Job from './Job';
 @Entity()
 @ObjectType()
 class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
   @Field(type => ID)
+  @PrimaryGeneratedColumn()
   readonly id: number;
 
-  @Column()
   @Field()
+  @Column()
   firstName: string;
 
-  @Column('varchar', { unique: true, length: 512 })
   @Field()
+  @Column('varchar', { unique: true, length: 512 })
   email: string;
 
   @Column()
@@ -29,8 +29,8 @@ class User extends BaseEntity {
   @Column('boolean', { default: false })
   confirmed: boolean;
 
-  @OneToMany(type => Job, job => job.owner)
   @Field(type => [Job])
+  @OneToMany(type => Job, job => job.owner)
   jobs: Job[];
 }
 

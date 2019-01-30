@@ -12,20 +12,20 @@ import RelationColumn from '../graphql/utils/RelationColumn';
 @Entity()
 @ObjectType()
 class Job extends BaseEntity {
-  @PrimaryGeneratedColumn()
   @Field(type => ID)
+  @PrimaryGeneratedColumn()
   readonly id: number;
 
-  @Column()
   @Field()
+  @Column()
   title: string;
 
-  @Column()
   @Field()
+  @Column({ type: 'text' })
   description: string;
 
-  @Column()
   @Field()
+  @Column()
   location: string;
 
   @Field(type => User)

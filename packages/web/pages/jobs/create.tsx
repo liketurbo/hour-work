@@ -12,9 +12,11 @@ import {
   JobCreateInput,
   JobCreateDocument,
   JobCreateMutation,
-  JobCreateVariables
+  JobCreateVariables,
+  JobFetchAllDocument
 } from '../../components/ApolloComponents';
 import { useMutation } from 'react-apollo-hooks';
+import Router from 'next/router';
 
 const useStyles = makeStyles((theme: any) => ({
   layout: {
@@ -58,11 +60,11 @@ const JobCreate = () => {
             title: ''
           }}
           onSubmit={async input => {
-            const resp = await mutate({ variables: { input } });
-
-            if (resp && resp.data && resp.data.jobCreate) {
-              console.log(resp.data.jobCreate);
-            }
+            await mutate({
+              variables: { input },
+              refetchQueries: [{ query: JobFetchAllDocument }]
+            });
+            Router.push('/jobs');
           }}
         >
           <Grid container spacing={24}>
