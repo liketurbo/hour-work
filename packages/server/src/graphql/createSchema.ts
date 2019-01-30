@@ -6,6 +6,8 @@ import UserLoginResolver from '../modules/user/Login';
 import UserLogoutResolver from '../modules/user/Logout';
 import UserMeResolver from '../modules/user/Me';
 import UserRegisterResolver from '../modules/user/Register';
+import JobCreateResolver from '../modules/job/JobCreate';
+import JobFetchAllResolver from '../modules/job/JobFetchAll';
 import Context from '../types/context';
 
 const createSchema = async () =>
@@ -17,7 +19,9 @@ const createSchema = async () =>
       UserLoginResolver,
       UserLogoutResolver,
       UserRegisterResolver,
-      UserMeResolver
+      UserMeResolver,
+      JobCreateResolver,
+      JobFetchAllResolver
     ],
     authChecker({ context: { req } }: { context: Context }) {
       if (req.session.userId) {

@@ -3,15 +3,17 @@ import {
   BaseEntity,
   Column,
   Entity,
-  PrimaryGeneratedColumn
-  } from 'typeorm';
+  PrimaryGeneratedColumn,
+  OneToMany
+} from 'typeorm';
+import Job from './Job';
 
 @Entity()
 @ObjectType()
 class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(type => ID)
-  id: number;
+  readonly id: number;
 
   @Column()
   @Field()
@@ -26,6 +28,10 @@ class User extends BaseEntity {
 
   @Column('boolean', { default: false })
   confirmed: boolean;
+
+  @OneToMany(type => Job, job => job.owner)
+  @Field(type => [Job])
+  jobs: Job[];
 }
 
 export default User;
