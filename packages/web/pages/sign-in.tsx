@@ -13,11 +13,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import { Formik } from 'formik';
 import { useMutation } from 'react-apollo-hooks';
+import Router from 'next/router';
 import {
   UserLoginInput,
   UserLoginVariables,
   UserLoginDocument,
-  UserLoginMutation
+  UserLoginMutation,
+  UserMeDocument
 } from '../components/ApolloComponents';
 import Layout from '../components/Layout';
 
@@ -72,11 +74,12 @@ const SignIn = () => {
         </Typography>
         <Formik<UserLoginInput>
           onSubmit={async input => {
-            const resp = await mutate({ variables: { input } });
+            await mutate({
+              variables: { input },
+              refetchQueries: [{ query: UserMeDocument }]
+            });
 
-            if (resp && resp.data && resp.data.login) {
-              console.log(resp.data.login);
-            }
+            Router.push('/jobs');
           }}
           initialValues={{
             email: '',

@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import { Formik } from 'formik';
 import { useMutation } from 'react-apollo-hooks';
+import Router from 'next/router';
 import {
   UserRegisterMutation,
   UserRegisterVariables,
@@ -72,11 +73,8 @@ const SignUp = () => {
         </Typography>
         <Formik<UserRegisterInput>
           onSubmit={async input => {
-            const resp = await mutate({ variables: { input } });
-
-            if (resp && resp.data && resp.data.register) {
-              console.log(resp.data.register);
-            }
+            await mutate({ variables: { input } });
+            Router.push('/sign-in');
           }}
           initialValues={{
             firstName: '',
