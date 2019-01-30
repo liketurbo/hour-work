@@ -24,9 +24,49 @@ export interface UserRegisterInput {
   email: string;
 }
 
+export interface JobCreateInput {
+  title: string;
+
+  description: string;
+
+  location: string;
+}
+
 // ====================================================
 // Documents
 // ====================================================
+
+export type JobFetchAllVariables = {};
+
+export type JobFetchAllQuery = {
+  __typename?: "Query";
+
+  jobFetchAll: JobFetchAllJobFetchAll[];
+};
+
+export type JobFetchAllJobFetchAll = {
+  __typename?: "Job";
+
+  id: string;
+
+  title: string;
+
+  description: string;
+
+  location: string;
+
+  owner: JobFetchAllOwner;
+};
+
+export type JobFetchAllOwner = {
+  __typename?: "User";
+
+  id: string;
+
+  firstName: string;
+
+  email: string;
+};
 
 export type UserLoginVariables = {
   input: UserLoginInput;
@@ -77,6 +117,54 @@ import gql from "graphql-tag";
 // Components
 // ====================================================
 
+export const JobFetchAllDocument = gql`
+  query JobFetchAll {
+    jobFetchAll {
+      id
+      title
+      description
+      location
+      owner {
+        id
+        firstName
+        email
+      }
+    }
+  }
+`;
+export class JobFetchAllComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<JobFetchAllQuery, JobFetchAllVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<JobFetchAllQuery, JobFetchAllVariables>
+        query={JobFetchAllDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type JobFetchAllProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<JobFetchAllQuery, JobFetchAllVariables>
+> &
+  TChildProps;
+export function JobFetchAllHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        JobFetchAllQuery,
+        JobFetchAllVariables,
+        JobFetchAllProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    JobFetchAllQuery,
+    JobFetchAllVariables,
+    JobFetchAllProps<TChildProps>
+  >(JobFetchAllDocument, operationOptions);
+}
 export const UserLoginDocument = gql`
   mutation UserLogin($input: UserLoginInput!) {
     login(input: $input) {

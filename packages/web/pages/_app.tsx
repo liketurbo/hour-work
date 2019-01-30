@@ -7,7 +7,8 @@ import App, { Container } from 'next/app';
 import React from 'react';
 import getPageContext, { PageContext } from '../lib/getPageContext';
 import withApollo from '../lib/withApollo';
-import { ApolloProvider } from 'react-apollo-hooks';
+import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
 
 class MyApp extends App<{ apolloClient: ApolloClient<any> }> {
   constructor() {
@@ -42,7 +43,9 @@ class MyApp extends App<{ apolloClient: ApolloClient<any> }> {
             {/* Pass pageContext to the _document though the renderPage enhancer
                 to render collected styles on server side. */}
             <ApolloProvider client={apolloClient}>
-              <Component pageContext={this.pageContext} {...pageProps} />
+              <ApolloHooksProvider client={apolloClient}>
+                <Component pageContext={this.pageContext} {...pageProps} />
+              </ApolloHooksProvider>
             </ApolloProvider>
           </ThemeProvider>
         </StylesProvider>
