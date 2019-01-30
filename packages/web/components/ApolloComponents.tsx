@@ -36,6 +36,28 @@ export interface JobCreateInput {
 // Documents
 // ====================================================
 
+export type JobCreateVariables = {
+  input: JobCreateInput;
+};
+
+export type JobCreateMutation = {
+  __typename?: "Mutation";
+
+  jobCreate: JobCreateJobCreate;
+};
+
+export type JobCreateJobCreate = {
+  __typename?: "Job";
+
+  id: string;
+
+  title: string;
+
+  description: string;
+
+  location: string;
+};
+
 export type JobFetchAllVariables = {};
 
 export type JobFetchAllQuery = {
@@ -117,6 +139,53 @@ import gql from "graphql-tag";
 // Components
 // ====================================================
 
+export const JobCreateDocument = gql`
+  mutation JobCreate($input: JobCreateInput!) {
+    jobCreate(input: $input) {
+      id
+      title
+      description
+      location
+    }
+  }
+`;
+export class JobCreateComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<JobCreateMutation, JobCreateVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<JobCreateMutation, JobCreateVariables>
+        mutation={JobCreateDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type JobCreateProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<JobCreateMutation, JobCreateVariables>
+> &
+  TChildProps;
+export type JobCreateMutationFn = ReactApollo.MutationFn<
+  JobCreateMutation,
+  JobCreateVariables
+>;
+export function JobCreateHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        JobCreateMutation,
+        JobCreateVariables,
+        JobCreateProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    JobCreateMutation,
+    JobCreateVariables,
+    JobCreateProps<TChildProps>
+  >(JobCreateDocument, operationOptions);
+}
 export const JobFetchAllDocument = gql`
   query JobFetchAll {
     jobFetchAll {

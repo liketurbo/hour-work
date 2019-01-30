@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const jobFetchAllMutation = gql`
+const jobFetchAllQuery = gql`
   query JobFetchAll {
     jobFetchAll {
       id
@@ -16,4 +16,4 @@ const jobFetchAllMutation = gql`
   }
 `;
 
-export default jobFetchAllMutation;
+export default jobFetchAllQuery;
