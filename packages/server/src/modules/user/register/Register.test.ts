@@ -1,8 +1,8 @@
 import faker from 'faker';
 import { Connection } from 'typeorm';
 import User from '../../../entities/User';
-import connectTestDB from '../../../tests/utils/connectTestDB';
-import graphQLCall from '../../../tests/utils/graphQLCall';
+import connectTestDB from '../../../test/utils/connectTestDB';
+import graphQLCall from '../../../test/utils/graphQLCall';
 
 let connection: Connection;
 beforeAll(async () => {

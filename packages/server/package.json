@@ -43,7 +43,7 @@
   },
   "scripts": {
     "start": "ts-node-dev --respawn src/index.ts",
-    "test:setup": "ts-node ./src/tests/setup.ts",
+    "test:setup": "ts-node ./src/test/setup.ts",
     "test": "npm run test:setup && jest --forceExit --detectOpenHandles"
   }
 }
