@@ -1,25 +1,27 @@
-import green from '@material-ui/core/colors/green';
-import purple from '@material-ui/core/colors/purple';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProviderProps } from '@material-ui/core/styles/MuiThemeProvider';
 import { createGenerateClassName } from '@material-ui/styles';
 import { GenerateClassName, SheetsRegistry } from 'jss';
+import indigo from '@material-ui/core/colors/indigo';
+import pink from '@material-ui/core/colors/pink';
+import red from '@material-ui/core/colors/red';
 
 // A theme with custom primary and secondary color.
 // It's optional.
 const theme = createMuiTheme({
   palette: {
-    primary: {
-      light: purple[300],
-      main: purple[500],
-      dark: purple[700]
-    },
-    secondary: {
-      light: green[300],
-      main: green[500],
-      dark: green[700]
-    }
+    primary: indigo,
+    secondary: pink,
+    error: red,
+    // Used by `getContrastText()` to maximize the contrast between the background and
+    // the text.
+    contrastThreshold: 3,
+    // Used to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
+    // E.g., shift from Red 500 to Red 300 or Red 700.
+    tonalOffset: 0.2
   },
+
   typography: {
     useNextVariants: true
   }

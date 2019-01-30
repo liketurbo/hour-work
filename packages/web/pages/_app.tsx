@@ -4,11 +4,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 import { ApolloClient } from 'apollo-boost';
 import App, { Container } from 'next/app';
-import Head from 'next/head';
 import React from 'react';
-import { ApolloProvider } from 'react-apollo';
 import getPageContext, { PageContext } from '../lib/getPageContext';
 import withApollo from '../lib/withApollo';
+import { ApolloProvider } from 'react-apollo-hooks';
 
 class MyApp extends App<{ apolloClient: ApolloClient<any> }> {
   constructor() {
