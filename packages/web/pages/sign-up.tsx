@@ -19,9 +19,10 @@ import {
   UserRegisterDocument,
   UserRegisterInput
 } from '../components/ApolloComponents';
+import Layout from '../components/Layout';
 
 const useStyles = makeStyles((theme: any) => ({
-  main: {
+  layout: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,
@@ -60,7 +61,7 @@ const SignUp = () => {
   );
 
   return (
-    <main className={classes.main}>
+    <Layout className={classes.layout} title="Sign up">
       <CssBaseline />
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -133,7 +134,7 @@ const SignUp = () => {
           )}
         </Formik>
       </Paper>
-    </main>
+    </Layout>
   );
 };
 
