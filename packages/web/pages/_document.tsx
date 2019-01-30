@@ -33,7 +33,7 @@ class MyDocument extends Document<{
           />
           {/* PWA primary color */}
           <meta name="theme-color" content={themeColor} />
-          <link rel="icon" type="image/x-icon" href="favicon.ico" />
+          <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
