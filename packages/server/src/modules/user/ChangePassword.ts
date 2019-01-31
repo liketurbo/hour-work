@@ -1,11 +1,10 @@
 import bcrypt from 'bcryptjs';
-import { Arg, Mutation, Resolver } from 'type-graphql';
+import { Arg, Mutation } from 'type-graphql';
 import UserChangePasswordInput from './changePassword/ChangePasswordInput';
 import User from '../../entities/User';
 import redis from '../../middlewares/redis';
 import { FORGOT_PASSWORD } from '../../utils/createEmailUrl/Prefixes';
 
-@Resolver(of => User)
 class UserChangePasswordResolver {
   @Mutation(returns => Boolean)
   async changePassword(@Arg('input')

@@ -1,12 +1,11 @@
 import { hash } from 'bcryptjs';
-import { Arg, Mutation, Resolver } from 'type-graphql';
+import { Arg, Mutation } from 'type-graphql';
 import UserRegisterInput from './register/RegisterInput';
 import User from '../../entities/User';
 import createEmailUrl from '../../utils/CreateEmailUrl';
 import { CONFIRM_EMAIL } from '../../utils/createEmailUrl/Prefixes';
 import sendEmail from '../../utils/SendEmail';
 
-@Resolver(of => User)
 class UserRegisterResolver {
   @Mutation(returns => User)
   async register(@Arg('input')

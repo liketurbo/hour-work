@@ -9,6 +9,9 @@ import UserRegisterResolver from '../modules/user/Register';
 import JobCreateResolver from '../modules/job/JobCreate';
 import JobFetchAllResolver from '../modules/job/JobFetchAll';
 import Context from '../types/context';
+import OfferGetAllReceivedResolver from '../modules/offer/OfferGetAllReceived';
+import OfferCreateResolver from '../modules/offer/OfferCreate';
+import OfferGetAllOfferedResolver from '../modules/offer/OfferGetAllOffered';
 
 const createSchema = async () =>
   buildSchema({
@@ -21,7 +24,10 @@ const createSchema = async () =>
       UserRegisterResolver,
       UserMeResolver,
       JobCreateResolver,
-      JobFetchAllResolver
+      JobFetchAllResolver,
+      OfferGetAllReceivedResolver,
+      OfferGetAllOfferedResolver,
+      OfferCreateResolver
     ],
     authChecker({ context: { req } }: { context: Context }) {
       if (req.session.userId) {

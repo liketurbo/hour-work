@@ -1,8 +1,6 @@
-import { Ctx, Mutation, Resolver } from 'type-graphql';
-import User from '../../entities/User';
+import { Ctx, Mutation } from 'type-graphql';
 import Context from '../../types/context';
 
-@Resolver(of => User)
 class UserLogoutResolver {
   @Mutation(returns => Boolean)
   async logout(@Ctx() { req, res }: Context): Promise<Boolean> {

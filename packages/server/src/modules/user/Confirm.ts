@@ -1,9 +1,8 @@
-import { Arg, Mutation, Resolver } from 'type-graphql';
+import { Arg, Mutation } from 'type-graphql';
 import User from '../../entities/User';
 import redis from '../../middlewares/redis';
 import { CONFIRM_EMAIL } from '../../utils/createEmailUrl/Prefixes';
 
-@Resolver(of => User)
 class UserConfirmResolver {
   @Mutation(returns => Boolean)
   async confirm(@Arg('token') token: string): Promise<Boolean> {
