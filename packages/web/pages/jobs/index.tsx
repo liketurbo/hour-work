@@ -9,10 +9,15 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
-import { useQuery } from 'react-apollo-hooks';
+import { useQuery, useMutation } from 'react-apollo-hooks';
 import {
   JobFetchAllDocument,
-  JobFetchAllQuery
+  JobFetchAllQuery,
+  UserMeQuery,
+  UserMeDocument,
+  OfferCreateMutation,
+  OfferCreateVariables,
+  OfferCreateDocument
 } from '../../components/ApolloComponents';
 import Layout from '../../components/Layout';
 import Loading from '../../components/Loading';
@@ -47,27 +52,38 @@ const useStyles = makeStyles((theme: any) => ({
 
 const JobsIndex = () => {
   const classes = useStyles();
-  const { data, error, loading } = useQuery<JobFetchAllQuery>(
-    JobFetchAllDocument,
-    { suspend: false }
+
+  const jobs = useQuery<JobFetchAllQuery>(JobFetchAllDocument, {
+    suspend: false
+  });
+  const currentUser = useQuery<UserMeQuery>(UserMeDocument, { suspend: false });
+  const createOffer = useMutation<OfferCreateMutation, OfferCreateVariables>(
+    OfferCreateDocument
   );
 
-  if (error) {
-    return <div>{JSON.stringify(error)}</div>;
+  if (jobs.error || currentUser.error) {
+    return (
+      <div>
+        {JSON.stringify(jobs.error)}
+        {JSON.stringify(currentUser.error)}
+      </div>
+    );
   }
 
   return (
     <Layout title="Jobs" className={classes.layout}>
       <Grid container spacing={40} alignItems="flex-end">
-        {loading ? (
+        {jobs.loading || currentUser.loading ? (
           <Loading />
         ) : (
-          data.jobFetchAll.map(job => (
+          jobs.data.jobFetchAll.map(job => (
             <Grid item key={job.id} xs={12} sm={6} md={4}>
               <Card>
                 <CardHeader
                   title={job.title}
+                  subheader={job.location}
                   titleTypographyProps={{ align: 'center' }}
+                  subheaderTypographyProps={{ align: 'center' }}
                   className={classes.cardHeader}
                 />
                 <CardContent>
@@ -75,11 +91,22 @@ const JobsIndex = () => {
                     {job.description}
                   </Typography>
                 </CardContent>
-                <CardActions className={classes.cardActions}>
-                  <Button fullWidth variant="outlined" color="primary">
-                    Send offer
-                  </Button>
-                </CardActions>
+                {job.owner.id === currentUser.data.me.id ? null : (
+                  <CardActions className={classes.cardActions}>
+                    <Button
+                      fullWidth
+                      variant="outlined"
+                      color="primary"
+                      onClick={async () => {
+                        await createOffer({
+                          variables: { jobId: parseInt(job.id, 10) }
+                        });
+                      }}
+                    >
+                      Send offer
+                    </Button>
+                  </CardActions>
+                )}
               </Card>
             </Grid>
           ))

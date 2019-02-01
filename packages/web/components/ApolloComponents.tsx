@@ -90,6 +90,82 @@ export type JobFetchAllOwner = {
   email: string;
 };
 
+export type OfferCreateVariables = {
+  jobId: number;
+};
+
+export type OfferCreateMutation = {
+  __typename?: "Mutation";
+
+  offerCreate: OfferCreateOfferCreate;
+};
+
+export type OfferCreateOfferCreate = {
+  __typename?: "Offer";
+
+  id: string;
+};
+
+export type OfferGetAllOfferedVariables = {};
+
+export type OfferGetAllOfferedQuery = {
+  __typename?: "Query";
+
+  offerGetAllOffered: OfferGetAllOfferedOfferGetAllOffered[];
+};
+
+export type OfferGetAllOfferedOfferGetAllOffered = {
+  __typename?: "Offer";
+
+  id: string;
+
+  job: OfferGetAllOfferedJob;
+};
+
+export type OfferGetAllOfferedJob = {
+  __typename?: "Job";
+
+  title: string;
+
+  owner: OfferGetAllOfferedOwner;
+};
+
+export type OfferGetAllOfferedOwner = {
+  __typename?: "User";
+
+  firstName: string;
+};
+
+export type OfferGetAllReceivedVariables = {};
+
+export type OfferGetAllReceivedQuery = {
+  __typename?: "Query";
+
+  offerGetAllReceived: OfferGetAllReceivedOfferGetAllReceived[];
+};
+
+export type OfferGetAllReceivedOfferGetAllReceived = {
+  __typename?: "Offer";
+
+  id: string;
+
+  job: OfferGetAllReceivedJob;
+
+  owner: OfferGetAllReceivedOwner;
+};
+
+export type OfferGetAllReceivedJob = {
+  __typename?: "Job";
+
+  title: string;
+};
+
+export type OfferGetAllReceivedOwner = {
+  __typename?: "User";
+
+  firstName: string;
+};
+
 export type UserLoginVariables = {
   input: UserLoginInput;
 };
@@ -259,6 +335,149 @@ export function JobFetchAllHOC<TProps, TChildProps = any>(
     JobFetchAllVariables,
     JobFetchAllProps<TChildProps>
   >(JobFetchAllDocument, operationOptions);
+}
+export const OfferCreateDocument = gql`
+  mutation OfferCreate($jobId: Float!) {
+    offerCreate(jobId: $jobId) {
+      id
+    }
+  }
+`;
+export class OfferCreateComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<OfferCreateMutation, OfferCreateVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<OfferCreateMutation, OfferCreateVariables>
+        mutation={OfferCreateDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type OfferCreateProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<OfferCreateMutation, OfferCreateVariables>
+> &
+  TChildProps;
+export type OfferCreateMutationFn = ReactApollo.MutationFn<
+  OfferCreateMutation,
+  OfferCreateVariables
+>;
+export function OfferCreateHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        OfferCreateMutation,
+        OfferCreateVariables,
+        OfferCreateProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    OfferCreateMutation,
+    OfferCreateVariables,
+    OfferCreateProps<TChildProps>
+  >(OfferCreateDocument, operationOptions);
+}
+export const OfferGetAllOfferedDocument = gql`
+  query OfferGetAllOffered {
+    offerGetAllOffered {
+      id
+      job {
+        title
+        owner {
+          firstName
+        }
+      }
+    }
+  }
+`;
+export class OfferGetAllOfferedComponent extends React.Component<
+  Partial<
+    ReactApollo.QueryProps<OfferGetAllOfferedQuery, OfferGetAllOfferedVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Query<OfferGetAllOfferedQuery, OfferGetAllOfferedVariables>
+        query={OfferGetAllOfferedDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type OfferGetAllOfferedProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<OfferGetAllOfferedQuery, OfferGetAllOfferedVariables>
+> &
+  TChildProps;
+export function OfferGetAllOfferedHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        OfferGetAllOfferedQuery,
+        OfferGetAllOfferedVariables,
+        OfferGetAllOfferedProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    OfferGetAllOfferedQuery,
+    OfferGetAllOfferedVariables,
+    OfferGetAllOfferedProps<TChildProps>
+  >(OfferGetAllOfferedDocument, operationOptions);
+}
+export const OfferGetAllReceivedDocument = gql`
+  query OfferGetAllReceived {
+    offerGetAllReceived {
+      id
+      job {
+        title
+      }
+      owner {
+        firstName
+      }
+    }
+  }
+`;
+export class OfferGetAllReceivedComponent extends React.Component<
+  Partial<
+    ReactApollo.QueryProps<
+      OfferGetAllReceivedQuery,
+      OfferGetAllReceivedVariables
+    >
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Query<OfferGetAllReceivedQuery, OfferGetAllReceivedVariables>
+        query={OfferGetAllReceivedDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type OfferGetAllReceivedProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<OfferGetAllReceivedQuery, OfferGetAllReceivedVariables>
+> &
+  TChildProps;
+export function OfferGetAllReceivedHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        OfferGetAllReceivedQuery,
+        OfferGetAllReceivedVariables,
+        OfferGetAllReceivedProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    OfferGetAllReceivedQuery,
+    OfferGetAllReceivedVariables,
+    OfferGetAllReceivedProps<TChildProps>
+  >(OfferGetAllReceivedDocument, operationOptions);
 }
 export const UserLoginDocument = gql`
   mutation UserLogin($input: UserLoginInput!) {

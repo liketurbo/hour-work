@@ -52,6 +52,7 @@ const Header = () => {
     <AppBar position="static" color="default" className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
         <div>
+          <Button onClick={() => Router.push('/offers')}>Offers</Button>
           <Button onClick={() => Router.push('/jobs')}>Jobs</Button>
           <Button onClick={() => Router.push('/jobs/create')}>
             Create job

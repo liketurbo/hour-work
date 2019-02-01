@@ -72,10 +72,10 @@ const JobCreate = () => {
               <Field name="title" />
             </Grid>
             <Grid item xs={12}>
-              <Field name="location" />
+              <Field name="description" />
             </Grid>
             <Grid item xs={12}>
-              <Field name="description" />
+              <Field name="location" />
             </Grid>
             <Grid item>
               <Button type="submit" variant="contained" color="primary">
