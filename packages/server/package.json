@@ -34,6 +34,7 @@
     "@types/node": "^10.12.19",
     "@types/nodemailer": "^4.6.5",
     "@types/uuid": "^3.4.4",
+    "cross-env": "^5.2.0",
     "faker": "^4.1.0",
     "jest": "^24.0.0",
     "ts-jest": "^23.10.5",
@@ -42,7 +43,8 @@
     "typescript": "^3.2.4"
   },
   "scripts": {
-    "start": "ts-node-dev --respawn src/index.ts",
+    "start": "cross-env NODE_ENV=development ts-node-dev --respawn src/index.ts",
+    "build": "tsc",
     "test:setup": "ts-node ./src/test/setup.ts",
     "test": "npm run test:setup && jest --forceExit --detectOpenHandles"
   }

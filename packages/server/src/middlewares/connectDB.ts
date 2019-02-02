@@ -1,17 +1,8 @@
-import { createConnection } from 'typeorm';
+import { createConnection, getConnectionOptions } from 'typeorm';
 
-const connectDB = async () =>
-  createConnection({
-    name: 'default',
-    type: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: 'root',
-    password: 'root',
-    database: 'husband-hour',
-    synchronize: true,
-    logging: true,
-    entities: [__dirname + '/../entities/*.ts']
-  });
+const connectDB = async () => {
+  const connectionOptions = await getConnectionOptions(process.env.NODE_ENV);
+  return createConnection(connectionOptions);
+};
 
 export default connectDB;

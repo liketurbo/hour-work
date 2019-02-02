@@ -8,5 +8,8 @@
   ],
   "devDependencies": {
     "lerna": "^3.10.7"
+  },
+  "scripts": {
+    "build:server": "lerna run build --scope @hour-work/server"
   }
 }
