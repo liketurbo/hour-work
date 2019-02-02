@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import Layout from '../components/Layout';
-import Loading from '../components/Loading';
+import { Component } from 'react';
 import Context from '../interfaces/Context';
 import {
   ConfirmMutation,

@@ -1,64 +1,39 @@
 import '../lib/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
-import Link from 'next/link';
 import Layout from '../components/Layout';
+import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  layout: {
     textAlign: 'center',
     paddingTop: theme.spacing.unit * 20
   }
 }));
 
 const Index = () => {
-  const classes = useStyles({});
-  const [open, setState] = React.useState(false);
-
-  const handleClose = () => {
-    setState(false);
-  };
-  const handleClick = () => {
-    setState(true);
-  };
+  const classes = useStyles();
 
   return (
-    <Layout title="Home">
-      <div className={classes.root}>
-        <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Super Secret Password</DialogTitle>
-          <DialogContent>
-            <DialogContentText>1-2-3-4-5</DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button color="primary" onClick={handleClose}>
-              OK
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <Typography variant="h4" gutterBottom>
-          Material-UI
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          example project
-        </Typography>
-        <Typography gutterBottom>
-          <Link href="/about">
-            <a>Go to the about page</a>
-          </Link>
-        </Typography>
-        <Button variant="contained" color="secondary" onClick={handleClick}>
-          Super Secret Password
-        </Button>
-      </div>
+    <Layout className={classes.layout} title="Home">
+      <Typography variant="h4" gutterBottom>
+        Hour work
+      </Typography>
+      <Typography variant="subtitle1" gutterBottom>
+        JOB FOR EVERYONE
+      </Typography>
+      <List
+        subheader={<ListSubheader component="div">How it works</ListSubheader>}
+      >
+        <ListItemText>1. You post your job</ListItemText>
+        <ListItemText>2. Got offers from guys</ListItemText>
+        <ListItemText>3. You pick offer</ListItemText>
+        <ListItemText>4. Then you agree with worker</ListItemText>
+      </List>
     </Layout>
   );
 };
