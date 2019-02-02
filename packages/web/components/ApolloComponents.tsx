@@ -166,6 +166,16 @@ export type OfferGetAllReceivedOwner = {
   firstName: string;
 };
 
+export type ConfirmVariables = {
+  token: string;
+};
+
+export type ConfirmMutation = {
+  __typename?: "Mutation";
+
+  confirm: boolean;
+};
+
 export type UserLoginVariables = {
   input: UserLoginInput;
 };
@@ -478,6 +488,48 @@ export function OfferGetAllReceivedHOC<TProps, TChildProps = any>(
     OfferGetAllReceivedVariables,
     OfferGetAllReceivedProps<TChildProps>
   >(OfferGetAllReceivedDocument, operationOptions);
+}
+export const ConfirmDocument = gql`
+  mutation Confirm($token: String!) {
+    confirm(token: $token)
+  }
+`;
+export class ConfirmComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<ConfirmMutation, ConfirmVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<ConfirmMutation, ConfirmVariables>
+        mutation={ConfirmDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type ConfirmProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<ConfirmMutation, ConfirmVariables>
+> &
+  TChildProps;
+export type ConfirmMutationFn = ReactApollo.MutationFn<
+  ConfirmMutation,
+  ConfirmVariables
+>;
+export function ConfirmHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ConfirmMutation,
+        ConfirmVariables,
+        ConfirmProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    ConfirmMutation,
+    ConfirmVariables,
+    ConfirmProps<TChildProps>
+  >(ConfirmDocument, operationOptions);
 }
 export const UserLoginDocument = gql`
   mutation UserLogin($input: UserLoginInput!) {
