@@ -10,6 +10,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import { useQuery, useMutation } from 'react-apollo-hooks';
+import get from 'lodash/get';
+import Router from 'next/router';
 import {
   JobFetchAllDocument,
   JobFetchAllQuery,
@@ -91,14 +93,18 @@ const JobsIndex = () => {
                     {job.description}
                   </Typography>
                 </CardContent>
-                {job.owner.id === currentUser.data.me.id ? null : (
+                {job.owner.id === get(currentUser, 'data.me.id') ? null : (
                   <CardActions className={classes.cardActions}>
                     <Button
                       fullWidth
                       variant="outlined"
                       color="primary"
                       onClick={async () => {
-                        await createOffer({
+                        if (!currentUser.data.me) {
+                          return Router.push('/sign-in');
+                        }
+
+                        return createOffer({
                           variables: { jobId: parseInt(job.id, 10) }
                         });
                       }}

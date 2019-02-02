@@ -17,7 +17,6 @@ app
     });
 
     server.get('*', (req, res) => {
-      console.log(req);
       return handle(req, res);
     });
 
