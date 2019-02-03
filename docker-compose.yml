@@ -4,6 +4,7 @@ services:
     image: redis
   db:
     image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     ports:
       - '3306:3306'
     volumes:
@@ -12,8 +13,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: hour-work
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
   server:
     image: server
     ports:

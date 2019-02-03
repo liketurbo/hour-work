@@ -7,5 +7,5 @@ RUN yarn
 RUN yarn build:web
 
 ENV NODE_ENV=production
-EXPOSE 4000
-ENTRYPOINT [ "node", "./packages/web/server/index.js" ]
+EXPOSE 3000
+CMD cd packages/web && node index.js
