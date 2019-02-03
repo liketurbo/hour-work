@@ -2,35 +2,24 @@ version: '3'
 services:
   redis:
     image: redis
-    healthcheck:
-      test: ['CMD', 'redis-cli', 'ping']
-      interval: 30s
-      timeout: 10s
-      retries: 3
   db:
     image: mysql
     ports:
       - '3306:3306'
     volumes:
-      - db_data:/var/lib/mysql
+      - ./db_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_DATABASE: hour-work
       MYSQL_USER: root
       MYSQL_PASSWORD: root
-    healthcheck:
-      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
-      timeout: 20s
-      retries: 10
   server:
     image: server
     ports:
       - '4000:4000'
     depends_on:
-      redis:
-        condition: service_healthy
-      db:
-        condition: service_healthy
+      - redis
+      - db
   web:
     image: web
     ports:
