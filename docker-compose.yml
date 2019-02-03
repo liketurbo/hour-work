@@ -10,6 +10,7 @@ services:
       - ./db_data:/var/lib/mysql
     restart: always
     environment:
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: hour-work
       MYSQL_USER: root
       MYSQL_PASSWORD: root
@@ -27,7 +28,7 @@ services:
   proxy:
     image: abiosoft/caddy:no-stats
     volumes:
-      - /root/benawad.com/Caddyfile:/etc/Caddyfile
+      - /root/hour-work/Caddyfile:/etc/Caddyfile
       - /root/.caddy:/root/.caddy
       - /root/logs:/etc/logs
       - /root/goaccess/.html:/site/goaccess
@@ -41,7 +42,7 @@ services:
   goaccess:
     image: allinurl/goaccess
     volumes:
-      - /root/hour-work.ru/goaccess/data/:/srv/data
+      - /root/hour-work/goaccess/data/:/srv/data
       - /root/goaccess/.html:/srv/report
       - /root/logs:/srv/logs
     depends_on:

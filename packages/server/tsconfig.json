@@ -1,7 +1,9 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "skipLibCheck": true
+    "module": "commonjs",
+    "lib": ["es5", "es6"],
+    "target": "es6",
+    "outDir": "./dist"
   }
 }
