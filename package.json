@@ -12,5 +12,8 @@
   "scripts": {
     "build:server": "lerna run build --scope @hour-work/server",
     "build:web": "lerna run build --scope @hour-work/web"
+  },
+  "resolutions": {
+    "terser": "3.14.1"
   }
 }
