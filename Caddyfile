@@ -1,8 +1,3 @@
-hour-work.ru {
-  log / /etc/logs/requests.log "{combined}"
-  proxy / web:3000
-}
-
 www.hour-work.ru {
   log / /etc/logs/requests.log "{combined}"
   proxy / web:3000

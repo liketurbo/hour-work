@@ -11,7 +11,7 @@ const session = async (app: Express) => {
       credentials: true,
       origin:
         process.env.NODE_ENV === 'production'
-          ? process.env.WEB_URL
+          ? 'https://142.93.162.102:3000'
           : 'http://localhost:3000'
     })
   );

@@ -15,14 +15,14 @@ const createEmailUrl = async (
     case CONFIRM_EMAIL:
       url = `${
         process.env.NODE_ENV === 'production'
-          ? process.env.WEB_URL
+          ? 'https://142.93.162.102:3000'
           : 'http://localhost:3000'
       }/user/confirm-email/${token}`;
       break;
     case FORGOT_PASSWORD:
       url = `${
         process.env.NODE_ENV === 'production'
-          ? process.env.WEB_URL
+          ? 'https://142.93.162.102:3000'
           : 'http://localhost:3000'
       }/user/forgot-password/${token}`;
       break;

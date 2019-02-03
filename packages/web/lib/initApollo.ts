@@ -1,4 +1,8 @@
-import { ApolloClient, InMemoryCache, NormalizedCacheObject } from 'apollo-boost';
+import {
+  ApolloClient,
+  InMemoryCache,
+  NormalizedCacheObject
+} from 'apollo-boost';
 import { setContext } from 'apollo-link-context';
 import { createHttpLink } from 'apollo-link-http';
 import fetch from 'isomorphic-unfetch';
@@ -19,7 +23,7 @@ function create(initialState: any, { getToken }: Options) {
   const httpLink = createHttpLink({
     uri:
       process.env.NODE_ENV === 'production'
-        ? process.env.SERVER_URL
+        ? 'https://142.93.162.102:4000/graphql'
         : 'http://localhost:4000/graphql',
     credentials: 'include'
   });
