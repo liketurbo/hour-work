@@ -10,6 +10,7 @@
     "lerna": "^3.10.7"
   },
   "scripts": {
-    "build:server": "lerna run build --scope @hour-work/server"
+    "build:server": "lerna run build --scope @hour-work/server",
+    "build:web": "lerna run build --scope @hour-work/web"
   }
 }

@@ -1,0 +1,12 @@
+FROM node
+
+ENV NODE_ENV=production
+
+COPY . /src
+WORKDIR /src
+
+RUN yarn
+RUN yarn build:server
+
+EXPOSE 4000
+ENTRYPOINT [ "node", "./packages/server/dist/index.js" ]
