@@ -22,6 +22,9 @@
 
 // export default connectDB;
 import { createConnection } from 'typeorm';
+import Job from '../entities/Job';
+import User from '../entities/User';
+import Offer from '../entities/Offer';
 
 const dev = {
   type: 'postgres',
@@ -51,9 +54,7 @@ const prod = {
   database: 'hour-work',
   synchronize: true,
   logging: false,
-  entities: ['dist/entity/**/*.*'],
-  migrations: ['dist/migration/**/*.*'],
-  subscribers: ['dist/subscriber/**/*.*']
+  entities: [Job, User, Offer]
 };
 
 const connectDB = async () => {
