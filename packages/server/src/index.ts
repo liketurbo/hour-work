@@ -6,6 +6,8 @@ import session from './middlewares/session';
 
 const main = async () => {
   const app = express();
+  app.set('trust proxy', 1);
+
   await connectDB();
   session(app);
   await createGraphQL(app);
