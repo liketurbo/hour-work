@@ -5,7 +5,7 @@ import Context from '../../types/context';
 class UserMeResolver {
   @Query(returns => User, { nullable: true })
   async me(@Ctx() { req }: Context): Promise<User | null> {
-    if (!req.session.userId) {
+    if (!req.session || !req.session.userId) {
       return null;
     }
 

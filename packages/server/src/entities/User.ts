@@ -20,7 +20,7 @@ class User extends BaseEntity {
   firstName: string;
 
   @Field()
-  @Column('varchar', { unique: true, length: 512 })
+  @Column('text', { unique: true })
   email: string;
 
   @Column()
