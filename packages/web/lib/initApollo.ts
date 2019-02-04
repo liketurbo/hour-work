@@ -23,7 +23,7 @@ function create(initialState: any, { getToken }: Options) {
   const httpLink = createHttpLink({
     uri:
       process.env.NODE_ENV === 'production'
-        ? 'https://157.230.98.243:4000/graphql'
+        ? 'https://server.hour-work.ru/graphql'
         : 'http://localhost:4000/graphql',
     credentials: 'include'
   });

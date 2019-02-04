@@ -11,7 +11,7 @@ const session = async (app: Express) => {
       credentials: true,
       origin:
         process.env.NODE_ENV === 'production'
-          ? 'https://157.230.98.243:3000'
+          ? 'https://www.hour-work.ru'
           : 'http://localhost:3000'
     })
   );
@@ -26,7 +26,7 @@ const session = async (app: Express) => {
       saveUninitialized: false, // Forces a session that is "uninitialized" to be saved to the store
       secret: 'SESSION_SECRET',
       cookie: {
-        secure: process.env.NODE_ENV === 'production',
+        // secure: process.env.NODE_ENV === 'production',
         httpOnly: true, // Ensures the cookie is sent only over HTTP(S), not client JavaScript, helping to protect against cross-site scripting attacks.
         maxAge: ms('7d')
       }
