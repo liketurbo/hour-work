@@ -10,6 +10,12 @@ app
   .then(() => {
     const server = express();
 
+    server.get('/user/confirm-email/:token', (req, res) => {
+      const actualPage = '/confirm';
+      const queryParams = { token: req.params.token };
+      app.render(req, res, actualPage, queryParams);
+    });
+
     server.get('*', (req, res) => {
       return handle(req, res);
     });
