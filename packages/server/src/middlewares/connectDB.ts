@@ -49,7 +49,7 @@ const prod = {
   username: 'postgres',
   password: 'postgres',
   database: 'hour-work',
-  synchronize: false,
+  synchronize: true,
   logging: false,
   entities: ['dist/entity/**/*.*'],
   migrations: ['dist/migration/**/*.*'],
