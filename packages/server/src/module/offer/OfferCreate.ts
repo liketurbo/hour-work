@@ -7,10 +7,10 @@ import {
   FieldResolver,
   Root
 } from 'type-graphql';
-import Job from '../../entities/Job';
+import Job from '../../entity/Job';
 import Context from '../../types/context';
-import User from '../../entities/User';
-import Offer from '../../entities/Offer';
+import User from '../../entity/User';
+import Offer from '../../entity/Offer';
 
 @Resolver(of => Offer)
 class OfferCreateResolver {

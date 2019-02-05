@@ -1,7 +1,7 @@
 import { compare } from 'bcryptjs';
 import { Arg, Ctx, Mutation } from 'type-graphql';
 import UserLoginInput from './login/LoginInput';
-import User from '../../entities/User';
+import User from '../../entity/User';
 import Context from '../../types/context';
 
 class UserLoginResolver {

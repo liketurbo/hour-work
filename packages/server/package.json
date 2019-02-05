@@ -1,5 +1,6 @@
 {
   "name": "@hour-work/server",
+  "private": true,
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
@@ -47,5 +48,11 @@
     "build": "tsc",
     "test:setup": "ts-node ./src/test/setup.ts",
     "test": "npm run test:setup && jest --forceExit --detectOpenHandles"
+  },
+  "workspaces": {
+    "nohoist": [
+      "typeorm",
+      "typeorm/**"
+    ]
   }
 }

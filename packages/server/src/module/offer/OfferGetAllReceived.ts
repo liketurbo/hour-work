@@ -1,5 +1,5 @@
 import { Query, Ctx } from 'type-graphql';
-import Offer from '../../entities/Offer';
+import Offer from '../../entity/Offer';
 import Context from '../../types/context';
 
 class OfferGetAllReceivedResolver {

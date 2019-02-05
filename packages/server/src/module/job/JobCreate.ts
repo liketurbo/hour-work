@@ -8,9 +8,9 @@ import {
   Root
 } from 'type-graphql';
 import JobCreateInput from './jobCreate/JobCreateInput';
-import Job from '../../entities/Job';
+import Job from '../../entity/Job';
 import Context from '../../types/context';
-import User from '../../entities/User';
+import User from '../../entity/User';
 
 @Resolver(of => Job)
 class JobCreateResolver {

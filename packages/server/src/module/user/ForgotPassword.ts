@@ -1,6 +1,6 @@
 import { Arg, Mutation } from 'type-graphql';
 import UserForgotPasswordInput from './forgotPassword/ForgotPasswordInput';
-import User from '../../entities/User';
+import User from '../../entity/User';
 import createEmailUrl from '../../utils/CreateEmailUrl';
 import { FORGOT_PASSWORD } from '../../utils/createEmailUrl/Prefixes';
 import sendEmail from '../../utils/SendEmail';

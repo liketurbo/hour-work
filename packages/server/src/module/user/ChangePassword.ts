@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs';
 import { Arg, Mutation } from 'type-graphql';
 import UserChangePasswordInput from './changePassword/ChangePasswordInput';
-import User from '../../entities/User';
-import redis from '../../middlewares/redis';
+import User from '../../entity/User';
+import redis from '../../middleware/redis';
 import { FORGOT_PASSWORD } from '../../utils/createEmailUrl/Prefixes';
 
 class UserChangePasswordResolver {

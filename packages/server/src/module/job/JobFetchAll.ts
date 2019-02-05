@@ -1,5 +1,5 @@
 import { Query } from 'type-graphql';
-import Job from '../../entities/Job';
+import Job from '../../entity/Job';
 
 class JobFetchAllResolver {
   @Query(returns => [Job])

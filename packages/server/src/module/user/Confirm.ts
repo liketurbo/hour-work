@@ -1,6 +1,6 @@
 import { Arg, Mutation } from 'type-graphql';
-import User from '../../entities/User';
-import redis from '../../middlewares/redis';
+import User from '../../entity/User';
+import redis from '../../middleware/redis';
 import { CONFIRM_EMAIL } from '../../utils/createEmailUrl/Prefixes';
 
 class UserConfirmResolver {

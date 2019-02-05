@@ -1,7 +1,7 @@
 import ms from 'ms';
 import uuid from 'uuid';
 import { CONFIRM_EMAIL, FORGOT_PASSWORD } from './createEmailUrl/Prefixes';
-import redis from '../middlewares/redis';
+import redis from '../middleware/redis';
 
 const createEmailUrl = async (
   userId: number,

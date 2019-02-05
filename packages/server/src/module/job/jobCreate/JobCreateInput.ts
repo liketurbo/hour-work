@@ -1,5 +1,5 @@
 import { Field, InputType } from 'type-graphql';
-import Job from '../../../entities/Job';
+import Job from '../../../entity/Job';
 
 @InputType()
 class JobCreateInput implements Partial<Job> {

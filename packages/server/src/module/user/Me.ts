@@ -1,5 +1,5 @@
 import { Ctx, Query } from 'type-graphql';
-import User from '../../entities/User';
+import User from '../../entity/User';
 import Context from '../../types/context';
 
 class UserMeResolver {
