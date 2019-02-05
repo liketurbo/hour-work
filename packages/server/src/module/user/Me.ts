@@ -9,7 +9,7 @@ class UserMeResolver {
       return null;
     }
 
-    return User.findOne(req.session.userId);
+    return await User.findOne(req.session.userId) || null;
   }
 }
 
