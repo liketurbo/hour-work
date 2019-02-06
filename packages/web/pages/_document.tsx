@@ -52,7 +52,7 @@ interface PagePropsWithPageContext extends AnyPageProps {
   pageContext: PageContext;
 }
 
-MyDocument.getInitialProps = ctx => {
+(MyDocument as any).getInitialProps = (ctx: any) => {
   // Resolution order
   //
   // On the server:
