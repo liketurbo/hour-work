@@ -77,7 +77,7 @@ const JobsIndex = () => {
       <Grid container spacing={40} alignItems="flex-end">
         {jobs.loading || currentUser.loading ? (
           <Loading />
-        ) : (
+        ) : jobs && jobs.data ? (
           jobs.data.jobFetchAll.map(job => (
             <Grid item key={job.id} xs={12} sm={6} md={4}>
               <Card>
@@ -100,7 +100,7 @@ const JobsIndex = () => {
                       variant="outlined"
                       color="primary"
                       onClick={async () => {
-                        if (!currentUser.data.me) {
+                        if (!currentUser || !currentUser.data) {
                           return Router.push('/sign-in');
                         }
 
@@ -116,7 +116,7 @@ const JobsIndex = () => {
               </Card>
             </Grid>
           ))
-        )}
+        ) : null}
       </Grid>
     </Layout>
   );

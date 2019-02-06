@@ -13,6 +13,10 @@ class Confirm extends Component {
     query: { token },
     ...ctx
   }: Context) {
+    if (!token) {
+      return redirect(ctx, '/');
+    }
+
     await apolloClient.mutate<ConfirmMutation, ConfirmVariables>({
       mutation: ConfirmDocument,
       variables: {

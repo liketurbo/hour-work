@@ -73,7 +73,7 @@ const JobsIndex = () => {
       <Grid container spacing={40} alignItems="flex-end">
         {allReceivedOffers.loading ? (
           <Loading />
-        ) : (
+        ) : allReceivedOffers && allReceivedOffers.data ? (
           allReceivedOffers.data.offerGetAllReceived.map(offer => (
             <Grid item key={offer.id} xs={12} sm={6} md={4}>
               <Card>
@@ -87,13 +87,13 @@ const JobsIndex = () => {
               </Card>
             </Grid>
           ))
-        )}
+        ) : null}
       </Grid>
       <Typography variant="overline">Sent Offers</Typography>
       <Grid container spacing={40} alignItems="flex-end">
         {allOfferedOffers.loading ? (
           <Loading />
-        ) : (
+        ) : allOfferedOffers && allOfferedOffers.data ? (
           allOfferedOffers.data.offerGetAllOffered.map(offer => (
             <Grid item key={offer.id} xs={12} sm={6} md={4}>
               <Card>
@@ -107,7 +107,7 @@ const JobsIndex = () => {
               </Card>
             </Grid>
           ))
-        )}
+        ) : null}
       </Grid>
     </Layout>
   );
