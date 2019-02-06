@@ -10,10 +10,10 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Button: React.ComponentType<ButtonProps> = ({ children, ...rest }) => {
-  const classes = useStyles();
+  const { button } = useStyles();
 
   return (
-    <MUIButton className={classes.button} {...rest}>
+    <MUIButton className={button} {...rest}>
       {children}
     </MUIButton>
   );

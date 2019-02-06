@@ -64,7 +64,7 @@ const Header = () => {
           <Loading />
         ) : (
           <div className={classes.rightSegment}>
-            {data.me ? (
+            {data && data.me ? (
               <Fragment>
                 <Typography>{data.me.firstName}</Typography>
                 <Button
