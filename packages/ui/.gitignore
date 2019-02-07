@@ -1,0 +1,9 @@
+# Ignore everything
+/*
+# But not these files...
+!/.storybook/
+!/src/
+!.gitignore
+!package.json
+!rollup.config.js
+!tsconfig.json

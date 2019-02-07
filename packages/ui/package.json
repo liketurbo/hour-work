@@ -1,8 +1,8 @@
 {
   "name": "@hour-work/ui",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.js",
+  "main": "index.js",
+  "types": "index.d.ts",
   "private": true,
   "dependencies": {
     "@material-ui/core": "3.9.2",
@@ -34,8 +34,9 @@
     "typescript": "3.3.3"
   },
   "scripts": {
-    "start": "start-storybook -p 9009 -s public",
-    "build": "tsc"
+    "start": "rollup -cw",
+    "build": "rollup -c",
+    "storybook": "start-storybook -p 9009 -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
