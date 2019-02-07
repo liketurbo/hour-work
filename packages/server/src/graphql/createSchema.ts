@@ -30,11 +30,7 @@ const createSchema = async () =>
       OfferCreateResolver
     ],
     authChecker({ context: { req } }: { context: Context }) {
-      if (req.session.userId) {
-        return true;
-      }
-
-      return false;
+      return req.session && req.session.userId ? true : false;
     }
   });
 

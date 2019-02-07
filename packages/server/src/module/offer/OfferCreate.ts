@@ -22,7 +22,7 @@ class OfferCreateResolver {
   ): Promise<Offer> {
     const offer = await Offer.create({
       jobId,
-      ownerId: req.session.userId
+      ownerId: req.session!.userId
     }).save();
 
     return offer;

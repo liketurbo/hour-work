@@ -25,7 +25,7 @@ class JobCreateResolver {
       title,
       location,
       description,
-      ownerId: req.session.userId
+      ownerId: req.session!.userId
     }).save();
 
     return job;
