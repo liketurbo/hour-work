@@ -3,6 +3,7 @@ import { Arg, Ctx, Mutation } from 'type-graphql';
 import UserLoginInput from './login/LoginInput';
 import User from '../../entity/User';
 import Context from '../../types/context';
+import { GraphQLError } from 'graphql';
 
 class UserLoginResolver {
   @Mutation(returns => User, { nullable: true })
@@ -17,7 +18,7 @@ class UserLoginResolver {
       return null;
     }
 
-    if (!user.confirmed) {
+    if (!user.confirmed || !user.password) {
       return null;
     }
 
@@ -25,6 +26,10 @@ class UserLoginResolver {
 
     if (!valid) {
       return null;
+    }
+
+    if (!req.session) {
+      throw new GraphQLError('session not provided');
     }
 
     req.session.userId = user.id;

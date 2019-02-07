@@ -1,6 +1,6 @@
 import faker from 'faker';
 import { Connection } from 'typeorm';
-import User from '../../../entities/User';
+import User from '../../../entity/User';
 import connectTestDB from '../../../test/utils/connectTestDB';
 import graphQLCall from '../../../test/utils/graphQLCall';
 

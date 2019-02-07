@@ -19,14 +19,21 @@ class User extends BaseEntity {
   @Column()
   firstName: string;
 
-  @Field()
-  @Column('text', { unique: true })
-  email: string;
+  @Field({ nullable: true })
+  @Column({ unique: true, nullable: true })
+  email?: string;
 
-  @Column()
-  password: string;
+  @Column({ nullable: true })
+  password?: string;
 
-  @Column('boolean', { default: false })
+  @Column({ unique: true, nullable: true })
+  vkontakteId?: string;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  pictureUrl?: string;
+
+  @Column({ default: false })
   confirmed: boolean;
 
   @Field(type => [Job])

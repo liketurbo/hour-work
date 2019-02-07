@@ -20,6 +20,7 @@ const Index = () => {
 
   return (
     <Layout className={classes.layout} title="Home">
+      <a href="http://localhost:4000/auth/vkontakte">Log in with Vk.com</a>
       <Typography variant="h4" gutterBottom>
         Hour work
       </Typography>

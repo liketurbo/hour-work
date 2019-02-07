@@ -14,6 +14,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types"],
-    "lib": ["dom", "es2015", "es2016"]
+    "lib": ["dom", "es2015", "es2016"],
+    "outDir": "dist"
   }
 }
