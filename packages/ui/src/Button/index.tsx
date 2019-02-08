@@ -1,19 +1,17 @@
 import React from 'react';
-import MUIButton, { ButtonProps } from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/styles';
-import theme from '../theme';
+import MUIButton, {
+  ButtonProps as MUIButtonProps
+} from '@material-ui/core/Button';
 
-const useStyles = makeStyles(() => ({
-  button: {
-    margin: theme.spacing.unit
-  }
-}));
+interface ButtonProps {
+  color?: MUIButtonProps['color'];
+  disabled?: MUIButtonProps['disabled'];
+  type?: MUIButtonProps['type'];
+}
 
 const Button: React.ComponentType<ButtonProps> = ({ children, ...rest }) => {
-  const { button } = useStyles();
-
   return (
-    <MUIButton className={button} {...rest}>
+    <MUIButton fullWidth={true} variant="contained" {...rest}>
       {children}
     </MUIButton>
   );

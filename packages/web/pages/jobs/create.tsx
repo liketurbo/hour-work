@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+import Button from '@hour-work/ui/Button';
 import Layout from '../../components/Layout';
 import { Form, Field } from '../../components/FormikForm';
 import {
@@ -59,30 +59,35 @@ const JobCreate = () => {
             location: '',
             title: ''
           }}
-          onSubmit={async input => {
+          onSubmit={async (input, { setSubmitting }) => {
             await mutate({
               variables: { input },
               refetchQueries: [{ query: JobFetchAllDocument }]
             });
+
+            setSubmitting(false);
+
             Router.push('/jobs');
           }}
         >
-          <Grid container spacing={24}>
-            <Grid item xs={12}>
-              <Field name="title" />
+          {({ isSubmitting }) => (
+            <Grid container spacing={24}>
+              <Grid item xs={12}>
+                <Field name="title" />
+              </Grid>
+              <Grid item xs={12}>
+                <Field name="description" />
+              </Grid>
+              <Grid item xs={12}>
+                <Field name="location" />
+              </Grid>
+              <Grid item>
+                <Button type="submit" color="primary" disabled={isSubmitting}>
+                  Create
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <Field name="description" />
-            </Grid>
-            <Grid item xs={12}>
-              <Field name="location" />
-            </Grid>
-            <Grid item>
-              <Button type="submit" variant="contained" color="primary">
-                Create
-              </Button>
-            </Grid>
-          </Grid>
+          )}
         </Form>
       </Paper>
     </Layout>

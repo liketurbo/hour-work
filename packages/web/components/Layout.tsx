@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Head from 'next/head';
-import Header from './Header';
+import Navbar from './Navbar';
 
 type LayoutProps = {
   title: string;
@@ -16,7 +16,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
     <Head>
       <title>{title}</title>
     </Head>
-    <Header />
+    <Navbar />
     <main {...{ className }}>{children}</main>
   </Fragment>
 );
