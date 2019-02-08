@@ -9,9 +9,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ButtonGroup: React.FC = ({ children }) => {
-  const { buttonGroup } = useStyles();
+  const classes = useStyles();
 
-  return <div className={buttonGroup}>{children}</div>;
+  return <div className={classes.buttonGroup}>{children}</div>;
 };
 
 export default ButtonGroup;

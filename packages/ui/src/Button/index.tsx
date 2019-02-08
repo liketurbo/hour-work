@@ -9,12 +9,10 @@ interface ButtonProps {
   type?: MUIButtonProps['type'];
 }
 
-const Button: React.ComponentType<ButtonProps> = ({ children, ...rest }) => {
-  return (
-    <MUIButton fullWidth={true} variant="contained" {...rest}>
-      {children}
-    </MUIButton>
-  );
-};
+const Button: React.ComponentType<ButtonProps> = ({ children, ...rest }) => (
+  <MUIButton fullWidth={true} variant="contained" {...rest}>
+    {children}
+  </MUIButton>
+);
 
 export default Button;

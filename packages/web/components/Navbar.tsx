@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Loading from '@hour-work/ui/Loading';
 import Router from 'next/router';
 import { useMutation, useQuery } from 'react-apollo-hooks';
 import {
@@ -12,7 +13,6 @@ import {
   UserMeDocument,
   UserMeQuery
 } from './ApolloComponents';
-import Loading from './Loading';
 
 const useStyles = makeStyles((theme: any) => ({
   '@global': {

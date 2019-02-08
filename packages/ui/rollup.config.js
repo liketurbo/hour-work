@@ -14,6 +14,8 @@ const external = [
   ...Object.keys(pkg.peerDependencies || {}),
   '@material-ui/core/Button',
   '@material-ui/core/Grid',
+  '@material-ui/core/Typography',
+  '@material-ui/core/CircularProgress',
   '@material-ui/core/styles',
   '@material-ui/core/colors/indigo',
   '@material-ui/core/colors/pink',

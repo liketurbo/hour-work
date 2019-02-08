@@ -6,7 +6,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/styles';
 import { useQuery } from 'react-apollo-hooks';
-import Loading from '../../components/Loading';
+import Loading from '@hour-work/ui/Loading';
 import Layout from '../../components/Layout';
 import {
   OfferGetAllReceivedQuery,

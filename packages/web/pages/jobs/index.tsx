@@ -9,6 +9,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
+import Loading from '@hour-work/ui/Loading';
 import { useQuery, useMutation } from 'react-apollo-hooks';
 import get from 'lodash/get';
 import Router from 'next/router';
@@ -22,7 +23,6 @@ import {
   OfferCreateDocument
 } from '../../components/ApolloComponents';
 import Layout from '../../components/Layout';
-import Loading from '../../components/Loading';
 
 const useStyles = makeStyles((theme: any) => ({
   layout: {
