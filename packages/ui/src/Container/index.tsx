@@ -17,11 +17,12 @@ interface ContainerProps {
   top?: number;
   justify?: GridProps['justify'];
   spacing?: GridProps['spacing'];
+  alignItems?: GridProps['alignItems'];
 }
 
 const Container: React.FC<ContainerProps> = ({
   children,
-  size = 80,
+  size = 100,
   top = 0,
   ...rest
 }) => {

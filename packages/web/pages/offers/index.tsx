@@ -3,10 +3,11 @@ import '../../lib/bootstrap';
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/styles';
 import { useQuery } from 'react-apollo-hooks';
 import Loading from '@hour-work/ui/Loading';
+import Header from '@hour-work/ui/Header';
+import Container from '@hour-work/ui/Container';
+import Col from '@hour-work/ui/Col';
 import Layout from '../../components/Layout';
 import {
   OfferGetAllReceivedQuery,
@@ -14,39 +15,8 @@ import {
   OfferGetAllOfferedDocument,
   OfferGetAllOfferedQuery
 } from '../../components/ApolloComponents';
-import { Typography } from '@material-ui/core';
 
-const useStyles = makeStyles((theme: any) => ({
-  layout: {
-    width: 'auto',
-    marginTop: theme.spacing.unit * 3,
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
-      width: 900,
-      marginLeft: 'auto',
-      marginRight: 'auto'
-    }
-  },
-  cardHeader: {
-    backgroundColor: theme.palette.grey[200]
-  },
-  cardPricing: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-    marginBottom: theme.spacing.unit * 2
-  },
-  cardActions: {
-    [theme.breakpoints.up('sm')]: {
-      paddingBottom: theme.spacing.unit * 2
-    }
-  }
-}));
-
-const JobsIndex = () => {
-  const classes = useStyles();
-
+const OffersIndex = () => {
   const allReceivedOffers = useQuery<OfferGetAllReceivedQuery>(
     OfferGetAllReceivedDocument,
     {
@@ -68,49 +38,51 @@ const JobsIndex = () => {
   }
 
   return (
-    <Layout title="Offers" className={classes.layout}>
-      <Typography variant="overline">Received Offers</Typography>
-      <Grid container spacing={40} alignItems="flex-end">
+    <Layout title="Offers">
+      <Container size={80} spacing={40} alignItems="flex-end">
+        <Col xs={12}>
+          <Header type="h6">Received Offers</Header>
+        </Col>
         {allReceivedOffers.loading ? (
           <Loading />
         ) : allReceivedOffers && allReceivedOffers.data ? (
           allReceivedOffers.data.offerGetAllReceived.map(offer => (
-            <Grid item key={offer.id} xs={12} sm={6} md={4}>
+            <Col key={offer.id} xs={12} sm={6} md={4}>
               <Card>
                 <CardHeader
                   title={offer.job.title}
                   subheader={offer.owner.firstName}
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
-                  className={classes.cardHeader}
                 />
               </Card>
-            </Grid>
+            </Col>
           ))
         ) : null}
-      </Grid>
-      <Typography variant="overline">Sent Offers</Typography>
-      <Grid container spacing={40} alignItems="flex-end">
+      </Container>
+      <Container size={80} spacing={40} alignItems="flex-end">
+        <Col xs={12}>
+          <Header type="h6">Sent Offers</Header>
+        </Col>
         {allOfferedOffers.loading ? (
           <Loading />
         ) : allOfferedOffers && allOfferedOffers.data ? (
           allOfferedOffers.data.offerGetAllOffered.map(offer => (
-            <Grid item key={offer.id} xs={12} sm={6} md={4}>
+            <Col key={offer.id} xs={12} sm={6} md={4}>
               <Card>
                 <CardHeader
                   title={offer.job.title}
                   subheader={offer.job.owner.firstName}
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
-                  className={classes.cardHeader}
                 />
               </Card>
-            </Grid>
+            </Col>
           ))
         ) : null}
-      </Grid>
+      </Container>
     </Layout>
   );
 };
 
-export default JobsIndex;
+export default OffersIndex;
