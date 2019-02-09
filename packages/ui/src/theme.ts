@@ -1,7 +1,6 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import indigo from '@material-ui/core/colors/indigo';
 import pink from '@material-ui/core/colors/pink';
 import red from '@material-ui/core/colors/red';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   props: {
@@ -11,9 +10,10 @@ const theme = createMuiTheme({
       disableRipple: true // No more ripple, on the whole application 💣!
     }
   },
-
   palette: {
-    primary: indigo,
+    primary: {
+      main: '#1da1f2'
+    },
     secondary: pink,
     error: red,
     // Used by `getContrastText()` to maximize the contrast between the background and
@@ -26,7 +26,21 @@ const theme = createMuiTheme({
   },
 
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
+    fontSize: 15,
+    fontWeightRegular: 500,
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"'
+    ].join(',')
   }
 });
 

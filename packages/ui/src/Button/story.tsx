@@ -1,11 +1,11 @@
-import * as React from 'react';
-
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import React from 'react';
 import { muiTheme } from 'storybook-addon-material-ui';
 
-import Button from '.';
+import { action } from '@storybook/addon-actions';
+import { storiesOf } from '@storybook/react';
+
 import theme from '../theme';
+import Button from './';
 
 storiesOf('Button', module)
   .addDecorator(muiTheme([theme]))

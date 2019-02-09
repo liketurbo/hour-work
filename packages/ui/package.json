@@ -8,8 +8,10 @@
     "@material-ui/core": "3.9.2",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/styles": "3.0.0-alpha.10",
+    "moment": "^2.24.0",
     "react": "next",
-    "react-dom": "next"
+    "react-dom": "next",
+    "react-rating": "^1.6.2"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",
@@ -27,7 +29,9 @@
     "@types/storybook__react": "4.0.0",
     "awesome-typescript-loader": "5.2.1",
     "babel-loader": "8.0.5",
+    "faker": "^4.1.0",
     "jest": "24.1.0",
+    "lodash": "^4.17.11",
     "react-docgen-typescript-loader": "3.0.1",
     "react-docgen-typescript-webpack-plugin": "1.1.0",
     "react-scripts": "2.1.3",
