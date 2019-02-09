@@ -6,7 +6,7 @@ const files = readdirSync('src', ['story.tsx']);
 const plugins = [
   typescript({
     useTsconfigDeclarationDir: true,
-    exclude: ['**/story.tsx']
+    exclude: ['**/story.tsx', '**/*.d.ts']
   })
 ];
 const external = [
@@ -38,35 +38,3 @@ const config = files.map(file => {
 });
 
 export default config;
-
-// export default {
-//   input: {
-//     include: ['src/**/*.ts', 'src/**/*.tsx'],
-//     exclude: ['src/**/story.tsx']
-//   },
-//   output: [
-//     {
-//       file: pkg.main,
-//       format: 'cjs'
-//     },
-//     {
-//       file: pkg.module,
-//       format: 'es'
-//     }
-//   ],
-//   external: [
-//     ...Object.keys(pkg.dependencies || {}),
-//     ...Object.keys(pkg.peerDependencies || {}),
-//     '@material-ui/core/Button',
-//     '@material-ui/core/styles',
-//     '@material-ui/core/colors/indigo',
-//     '@material-ui/core/colors/pink',
-//     '@material-ui/core/colors/red'
-//   ],
-//   plugins: [
-//     typescript({
-//       typescript: require('typescript')
-//     }),
-//     multiEntry()
-//   ]
-// };

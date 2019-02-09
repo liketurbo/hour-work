@@ -3,6 +3,7 @@
 # But not these files...
 !/.storybook/
 !/src/
+!/types/
 !.gitignore
 !package.json
 !rollup.config.js

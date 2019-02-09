@@ -4,6 +4,14 @@ import pink from '@material-ui/core/colors/pink';
 import red from '@material-ui/core/colors/red';
 
 const theme = createMuiTheme({
+  props: {
+    // Name of the component ⚛️
+    MuiButtonBase: {
+      // The properties to apply
+      disableRipple: true // No more ripple, on the whole application 💣!
+    }
+  },
+
   palette: {
     primary: indigo,
     secondary: pink,
