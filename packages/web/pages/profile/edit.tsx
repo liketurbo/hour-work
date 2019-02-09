@@ -12,7 +12,7 @@ import Layout from '../../components/Layout';
 import { Field, Form } from '../../components/FormikForm';
 import { UserMeQuery, UserMeDocument } from '../../components/ApolloComponents';
 
-const Index = () => {
+const ProfileEdit = () => {
   const currentUser = useQuery<UserMeQuery>(UserMeDocument, { suspend: false });
 
   return (
@@ -30,7 +30,7 @@ const Index = () => {
           }}
         >
           {({ isSubmitting }) => (
-            <Container size={80} top={3} spacing={8}>
+            <Container size={80} top={3} spacing={16}>
               <Col xs={12}>
                 <Header type="h6">Editing profile</Header>
               </Col>
@@ -40,7 +40,6 @@ const Index = () => {
               <Col xs={12}>
                 <Field name="email" />
               </Col>
-              <Col xs={12} />
               <Col xs={2}>
                 <Button type="submit" color="primary" disabled={isSubmitting}>
                   Save
@@ -54,4 +53,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default ProfileEdit;

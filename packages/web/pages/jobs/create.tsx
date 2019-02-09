@@ -1,97 +1,67 @@
 import '../../lib/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+import Container from '@hour-work/ui/Container';
+import Col from '@hour-work/ui/Col';
 import Button from '@hour-work/ui/Button';
+import Header from '@hour-work/ui/Header';
+import { useMutation } from 'react-apollo-hooks';
 import Layout from '../../components/Layout';
-import { Form, Field } from '../../components/FormikForm';
+import { Field, Form } from '../../components/FormikForm';
 import {
-  JobCreateInput,
-  JobCreateDocument,
   JobCreateMutation,
   JobCreateVariables,
+  JobCreateDocument,
   JobFetchAllDocument
 } from '../../components/ApolloComponents';
-import { useMutation } from 'react-apollo-hooks';
 import Router from 'next/router';
 
-const useStyles = makeStyles((theme: any) => ({
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
-    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
-      width: 600,
-      marginLeft: 'auto',
-      marginRight: 'auto'
-    }
-  },
-  paper: {
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 3,
-    padding: theme.spacing.unit * 2,
-    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
-      marginTop: theme.spacing.unit * 6,
-      marginBottom: theme.spacing.unit * 6,
-      padding: theme.spacing.unit * 3
-    }
-  }
-}));
-
-const JobCreate = () => {
-  const classes = useStyles();
+const JobsCreate = () => {
   const mutate = useMutation<JobCreateMutation, JobCreateVariables>(
     JobCreateDocument
   );
 
   return (
-    <Layout title="Create job" className={classes.layout}>
-      <Paper className={classes.paper}>
-        <Typography variant="h6" gutterBottom>
-          Create job
-        </Typography>
-        <Form<JobCreateInput>
-          initialValues={{
-            description: '',
-            location: '',
-            title: ''
-          }}
-          onSubmit={async (input, { setSubmitting }) => {
-            await mutate({
-              variables: { input },
-              refetchQueries: [{ query: JobFetchAllDocument }]
-            });
+    <Layout title="Jobs - Create">
+      <Form
+        initialValues={{
+          title: '',
+          location: '',
+          description: ''
+        }}
+        onSubmit={async input => {
+          await mutate({
+            variables: { input },
+            refetchQueries: [{ query: JobFetchAllDocument }]
+          });
 
-            setSubmitting(false);
-
-            Router.push('/jobs');
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Grid container spacing={24}>
-              <Grid item xs={12}>
-                <Field name="title" />
-              </Grid>
-              <Grid item xs={12}>
-                <Field name="description" />
-              </Grid>
-              <Grid item xs={12}>
-                <Field name="location" />
-              </Grid>
-              <Grid item>
-                <Button type="submit" color="primary" disabled={isSubmitting}>
-                  Create
-                </Button>
-              </Grid>
-            </Grid>
-          )}
-        </Form>
-      </Paper>
+          Router.push('/jobs');
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Container size={80} top={3} spacing={16}>
+            <Col xs={12}>
+              <Header type="h6">Create job</Header>
+            </Col>
+            <Col xs={12}>
+              <Field name="title" />
+            </Col>
+            <Col xs={12}>
+              <Field name="location" />
+            </Col>
+            <Col xs={12}>
+              <Field name="description" />
+            </Col>
+            <Col xs={2}>
+              <Button type="submit" color="primary" disabled={isSubmitting}>
+                Create
+              </Button>
+            </Col>
+          </Container>
+        )}
+      </Form>
     </Layout>
   );
 };
 
-export default JobCreate;
+export default JobsCreate;
