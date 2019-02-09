@@ -1,11 +1,12 @@
 import 'reflect-metadata';
-require('dotenv-save').config();
-
+import dotenv from 'dotenv-safe';
 import express from 'express';
 import connectDB from './middleware/connectDB';
 import createGraphQL from './middleware/createGraphQL';
 import session from './middleware/session';
 import vkAuth from './middleware/vkAuth';
+
+dotenv.config();
 
 const main = async () => {
   const app = express();
