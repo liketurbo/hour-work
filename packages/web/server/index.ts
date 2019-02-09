@@ -1,5 +1,6 @@
 import express from 'express';
 import next from 'next';
+import routes from './routes';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -10,11 +11,7 @@ app
   .then(() => {
     const server = express();
 
-    server.get('/user/confirm-email/:token', (req, res) => {
-      const actualPage = '/confirm';
-      const queryParams = { token: req.params.token };
-      app.render(req, res, actualPage, queryParams);
-    });
+    routes(server, app);
 
     server.get('*', (req, res) => {
       return handle(req, res);

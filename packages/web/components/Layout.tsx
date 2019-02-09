@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, FC } from 'react';
 import Head from 'next/head';
 import Navbar from './Navbar';
 
@@ -7,11 +7,7 @@ type LayoutProps = {
   className?: string;
 };
 
-const Layout: React.FunctionComponent<LayoutProps> = ({
-  children,
-  title,
-  className
-}) => (
+const Layout: FC<LayoutProps> = ({ children, title, className }) => (
   <Fragment>
     <Head>
       <title>{title}</title>

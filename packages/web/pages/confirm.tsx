@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import Context from '../interfaces/Context';
 import {
   ConfirmMutation,
@@ -7,7 +7,7 @@ import {
 } from '../components/ApolloComponents';
 import redirect from '../lib/redirect';
 
-class Confirm extends Component {
+class Confirm extends PureComponent {
   static async getInitialProps({
     apolloClient,
     query: { token },
@@ -24,13 +24,11 @@ class Confirm extends Component {
       }
     });
 
-    redirect(ctx, '/sign-in');
-
-    return {};
+    return redirect(ctx, '/sign-in');
   }
 
   render() {
-    return null as any;
+    return null;
   }
 }
 
