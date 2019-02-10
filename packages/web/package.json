@@ -24,7 +24,7 @@
     "isomorphic-unfetch": "3.0.0",
     "jss": "9.8.7",
     "lodash": "4.17.11",
-    "next": "7.0.2",
+    "next": "7.0.3",
     "react": "next",
     "react-apollo": "2.4.1",
     "react-apollo-hooks": "0.3.1",
