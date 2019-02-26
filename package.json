@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "3.11.0"
+    "lerna": "3.13.1"
   },
   "scripts": {
     "build:server": "lerna run build --scope @hour-work/server",
