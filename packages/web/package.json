@@ -27,7 +27,7 @@
     "next": "7.0.2",
     "react": "next",
     "react-apollo": "2.4.1",
-    "react-apollo-hooks": "0.3.1",
+    "react-apollo-hooks": "0.5.0",
     "react-dom": "next",
     "styled-jsx": "3.2.0"
   },
