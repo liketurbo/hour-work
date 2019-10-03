@@ -19,7 +19,7 @@
     "cookie": "0.3.1",
     "express": "4.16.4",
     "formik": "1.5.0",
-    "graphql": "14.1.1",
+    "graphql": "14.5.8",
     "humanize-string": "1.0.2",
     "isomorphic-unfetch": "3.0.0",
     "jss": "9.8.7",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@types/cookie": "0.3.2",
-    "@types/graphql": "14.0.5",
+    "@types/graphql": "14.2.3",
     "@types/humanize-string": "1.0.0",
     "@types/lodash": "4.14.120",
     "@types/next": "7.0.9",
